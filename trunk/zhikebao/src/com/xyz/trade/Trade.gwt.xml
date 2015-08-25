@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="trade">
+	<inherits name="com.google.gwt.user.User"/>
+
+    <source path="client"></source>
+    <source path="model"></source>
+	<inherits name="com.xyz.resources.Resources"/>
+	<inherits name="com.xyz.customer.Customer"/>
+	<inherits name="com.xyz.system.General"/>
+	
+	<entry-point class="com.xyz.trade.client.Trade"/>
+	<inherits name="com.extjs.gxt.ui.GXT"/>
+	<inherits name="com.extjs.gxt.charts.Chart"/>
+</module>

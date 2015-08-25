@@ -1,0 +1,9 @@
+#banner {
+	float: left;
+	width: 950px;
+}
+
+#toolbar {
+	float: right;
+	padding : 20px 40px;
+}

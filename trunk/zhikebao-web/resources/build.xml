@@ -1,0 +1,325 @@
+<?xml version="1.0"?>
+<project name="zhikebao-web" default="help" basedir="../..">
+	<property file="build.properties" />
+	<property name="src" value="src" />
+
+	<!-- Files needed to build the gwt-sl.jar -->
+	<fileset id="jars-for-jar" dir="${lib.dir}">
+		<include name="gwt-servlet.jar" />
+		<include name="gwt-dev-${gwt.version}.jar" />
+		<include name="spring-${spring.version}.jar" />
+		<include name="servlet-api-${servlet.version}.jar" />
+		<include name="commons-logging-${commons-logging.version}.jar" />
+		<include name="spring-webmvc-${spring.version}.jar" />
+	</fileset>
+
+	<!-- Files needed to build the client application -->
+	<fileset id="jars-for-client" dir="${lib.dir}">
+		<include name="gwt-dev-${gwt.version}.jar" />
+		<include name="gwt-user-${gwt.version}.jar" />
+	</fileset>
+
+	<!-- Files needed to build the demo WAR -->
+	<fileset id="jars-for-webapp" dir=".">
+		<include name="${lib.dir}/gwt-servlet-${gwt.version}.jar" />
+		<include name="${lib.dir}/spring-${spring.version}.jar" />
+		<include name="${lib.dir}/spring-webmvc-${spring.version}.jar" />
+		<include name="${lib.dir}/hsqldb-${hsqldb.version}.jar" />
+		<include name="${lib.dir}/gilead-adapter-core-${gilead.version}.jar" />
+		<include name="${lib.dir}/gilead-hibernate-util-${gilead.version}.jar" />
+		<include name="${lib.dir}/gilead-adapter4gwt-${gilead.version}.jar" />
+		<include name="${lib.dir}/beanlib-${beanlib.version}.jar" />
+		<include name="${lib.dir}/beanlib-hibernate-${beanlib.version}.jar" />
+		<include name="${lib.dir}/hibernate-${hibernate.version}.jar" />
+		<include name="${lib.dir}/dom4j-${dom4j.version}.jar" />
+		<include name="${lib.dir}/commons-logging-${commons-logging.version}.jar" />
+		<include name="${lib.dir}/commons-lang-${commons-lang.version}.jar" />
+		<include name="${lib.dir}/jta-${jta.version}.jar" />
+		<include name="${lib.dir}/log4j-${log4j.version}.jar" />
+		<include name="${lib.dir}/cglib-nodep-${cglib.version}.jar" />
+		<include name="${lib.dir}/commons-collections-${commons-collections.version}.jar" />
+		<include name="${lib.dir}/aspectjrt-${aspectj.version}.jar" />
+		<include name="${lib.dir}/aspectjweaver-${aspectj.version}.jar" />
+		<include name="${lib.dir}/slf4j-api-${slf4j.version}.jar" />
+		<include name="${lib.dir}/slf4j-log4j12-${slf4j.version}.jar" />
+		<include name="${lib.dir}/javassist-${javassist.version}.jar" />
+		<include name="${lib.dir}/jboss-serialization-${jboss-serialization.version}.jar" />
+		<include name="${lib.dir}/trove-${trove.version}.jar" />
+		<include name="${lib.dir}/xstream-${xstream.version}.jar" />
+		<include name="${target.dir}/jar/gwt-sl-${SL.version}.jar" />
+	</fileset>
+
+	<!-- Files needed to build and run tests -->
+	<fileset id="jars-for-test" dir=".">
+		<include name="${lib.dir}/gwt-servlet-${gwt.version}.jar" />
+		<include name="${lib.dir}/spring-${spring.version}.jar" />
+		<include name="${lib.dir}/spring-test-${spring.version}.jar" />
+		<include name="${lib.dir}/spring-webmvc-${spring.version}.jar" />
+		<include name="${lib.dir}/junit-${junit.version}.jar" />
+		<include name="${lib.dir}/servlet-api-${servlet.version}.jar" />
+		<include name="${lib.dir}/commons-logging-${commons-logging.version}.jar" />
+		<include name="${lib.dir}/hibernate-${hibernate.version}.jar" />
+		<include name="${lib.dir}/hsqldb-${hsqldb.version}.jar" />
+		<include name="${lib.dir}/beanlib-${beanlib.version}.jar" />
+		<include name="${lib.dir}/beanlib-hibernate-${beanlib.version}.jar" />
+		<include name="${lib.dir}/jta-${jta.version}.jar" />
+		<include name="${lib.dir}/log4j-${log4j.version}.jar" />
+		<include name="${lib.dir}/dom4j-${dom4j.version}.jar" />
+		<include name="${lib.dir}/commons-collections-${commons-collections.version}.jar" />
+		<include name="${lib.dir}/cglib-nodep-${cglib.version}.jar" />
+		<include name="${lib.dir}/gilead-adapter-core-${gilead.version}.jar" />
+		<include name="${lib.dir}/gilead-hibernate-util-${gilead.version}.jar" />
+		<include name="${lib.dir}/gilead-adapter4gwt-${gilead.version}.jar" />
+		<include name="${lib.dir}/aspectjrt-${aspectj.version}.jar" />
+		<include name="${lib.dir}/aspectjweaver-${aspectj.version}.jar" />
+		<include name="${lib.dir}/slf4j-api-${slf4j.version}.jar" />
+		<include name="${lib.dir}/slf4j-log4j12-${slf4j.version}.jar" />
+		<include name="${lib.dir}/javassist-${javassist.version}.jar" />
+		<include name="${lib.dir}/jboss-serialization-${jboss-serialization.version}.jar" />
+		<include name="${lib.dir}/trove-${trove.version}.jar" />
+		<include name="${target.dir}/jar/gwt-sl-${SL.version}.jar" />
+	</fileset>
+
+	<path id="libs-for-jar">
+		<fileset refid="jars-for-jar" />
+	</path>
+
+	<path id="libs-for-gwtcompile">
+		<path refid="libs-for-jar" />
+		<path refid="libs-for-test" />
+		<pathelement path="${src}/test/resources" />
+		<pathelement path="${src}/test/java" />
+		<pathelement path="${src}/main/java" />
+		<pathelement path="${lib.dir}/gwt-dev-windows-${gwt.version}.jar" />
+		<pathelement path="${lib.dir}/gwt-user-${gwt.version}.jar" />
+		<pathelement path="${lib.dir}/hibernate-annotations-${hibernate.annotations.version}.jar" />
+		<pathelement path="${lib.dir}/hibernate-${hibernate.version}.jar" />
+		<pathelement path="${lib.dir}/xstream-${xstream.version}.jar" />
+		<pathelement path="${lib.dir}/commons-lang-${commons-lang.version}.jar" />
+		<pathelement path="${target.dir}/classes" />
+	</path>
+
+	<path id="libs-for-webapp">
+		<path refid="libs-for-jar" />
+		<fileset refid="jars-for-webapp" />
+	</path>
+
+	<path id="libs-for-test">
+		<fileset refid="jars-for-test" />
+		<pathelement path="${target.dir}/classes" />
+		<pathelement path="${src}/test/resources" />
+		<pathelement path="${src}/test/java" />
+		<pathelement path="${src}/main/java" />
+	</path>
+
+	<target name="init" description="Creates directory structure">
+		<mkdir dir="${target.dir}" />
+		<mkdir dir="${target.dir}/classes" />
+		<mkdir dir="${target.dir}/jar" />
+		<mkdir dir="${target.dir}/webapp" />
+		<mkdir dir="${target.dir}/war" />
+		<mkdir dir="${target.dir}/docs" />
+		<mkdir dir="${target.dir}/package" />
+	</target>
+
+	<target name="clean" description="Removes the build directory structure">
+		<delete dir="${target.dir}/classes" />
+		<delete dir="${target.dir}/docs" />
+		<delete dir="${target.dir}/jar" />
+		<delete dir="${target.dir}/package" />
+		<delete dir="${target.dir}/war" />
+		<delete dir="${target.dir}/webapp" />
+	</target>
+
+	<target name="clean.classes">
+		<delete dir="${target.dir}/classes" />
+		<mkdir dir="${target.dir}/classes" />
+	</target>
+
+	<target name="compile" depends="init" description="Compiles main source classes">
+		<javac debug="on" destdir="${target.dir}/classes" srcdir="${src}/main/java" source="${javac.source}" target="${javac.target}">
+			<classpath>
+				<path refid="libs-for-jar" />
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="compile-test" description="Compiles unit tests">
+		<javac debug="on" classpathref="libs-for-test" destdir="${target.dir}/classes" srcdir="${src}/test/java" source="${javac.source}" target="${javac.target}" />
+		<copy file="${src}/test/resources/commons-logging.properties" todir="${target.dir}/classes" />
+		<copy file="${src}/test/resources/simplelog.properties" todir="${target.dir}/classes" />
+	</target>
+
+	<target name="jar" depends="compile" description="Creates the gwt-sl.jar">
+		<mkdir dir="${target.dir}/jar" />
+		<jar destfile="${target.dir}/jar/gwt-sl-${SL.version}.jar">
+			<fileset dir="${target.dir}/classes">
+				<include name="**/*" />
+			</fileset>
+		</jar>
+		<antcall target="clean.classes" />
+	</target>
+
+	<target name="gwtcompile" depends="compile" description="Run GWT compiler for test application">
+		<java classname="com.google.gwt.dev.Compiler" fork="true" spawn="false" failonerror="true">
+			<jvmarg line="-Xmx256M"/>
+			<arg line="-style DETAILED -war ${target.dir}/webapp/zhikebao" />
+			<classpath refid="libs-for-gwtcompile" />
+		</java>
+		<move todir="${target.dir}/webapp/zhikebao">
+			<fileset dir="${target.dir}/webapp/static/zhikebao">
+				<include name="**/*" />
+			</fileset>
+		</move>
+		<delete dir="${target.dir}/webapp/static/org.gwtwidgets.server.spring.test.ClientApplication" />
+	</target>
+
+	<target name="webapp" depends="clean,jar,gwtcompile,compile-test" description="Generates the sample web application">
+		<mkdir dir="${target.dir}/webapp/WEB-INF/classes" />
+		<mkdir dir="${target.dir}/webapp/WEB-INF/lib" />
+		<copy todir="${target.dir}/webapp">
+			<fileset dir="${src}/test/webapp">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+		<copy todir="${target.dir}/webapp/WEB-INF/classes">
+			<fileset dir="${target.dir}/classes">
+				<include name="**" />
+			</fileset>
+			<fileset dir="${src}/test/resources">
+				<include name="**" />
+			</fileset>
+		</copy>
+		<copy todir="${target.dir}/webapp/WEB-INF/lib" flatten="true">
+			<fileset refid="jars-for-webapp" />
+			<fileset dir="${target.dir}/jar">
+				<include name="gwt-sl-${SL.version}.jar" />
+			</fileset>
+		</copy>
+		<delete>
+			<fileset dir="${target.dir}/webapp/WEB-INF/lib">
+				<include name="servlet-api-${servlet.version}.jar" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="war" depends="webapp" description="Packages the sample web application into a WAR">
+		<war destfile="${target.dir}/war/gwt-sl-${SL.version}.war" webxml="${src}/test/webapp/WEB-INF/web.xml">
+			<fileset dir="${target.dir}/webapp">
+				<exclude name="**/web.xml" />
+				<include name="**/*" />
+			</fileset>
+		</war>
+	</target>
+
+	<target name="test" depends="compile,compile-test" description="Perform unit tests">
+		<echo>Checking for basic Junit availability. If this test fails, then junit may not be setup correctly or not all build targets have succeeded.</echo>
+		<junit fork="true" haltonfailure="true" showoutput="true">
+			<classpath refid="libs-for-test" />
+			<test name="org.gwtwidgets.server.spring.test.TestJunit" />
+		</junit>
+		<echo>Running TestHandler</echo>
+		<junit fork="true" haltonfailure="true" showoutput="true">
+			<classpath refid="libs-for-test" />
+			<test name="org.gwtwidgets.server.spring.test.TestHandler" />
+		</junit>
+		<echo>Running TestExporter</echo>
+		<junit fork="true" haltonfailure="true" showoutput="true">
+			<classpath refid="libs-for-test" />
+			<test name="org.gwtwidgets.server.spring.test.TestRPCExporter" />
+		</junit>
+		<echo>Running Hibernate4GWT (gilead) Test</echo>
+		<junit fork="true" haltonfailure="true" showoutput="true">
+			<classpath refid="libs-for-test" />
+			<test name="org.gwtwidgets.server.spring.test.TestGilead" />
+		</junit>
+	</target>
+
+	<target name="javadoc" description="Generate javadocs">
+		<javadoc destdir="${target.dir}/docs/api" sourcepath="${src}/main/java" packagenames="org.gwtwidgets.server.*">
+			<classpath>
+				<path refid="libs-for-jar" />
+				<path refid="libs-for-webapp" />
+			</classpath>
+		</javadoc>
+	</target>
+
+	<target name="copydoc">
+		<copy todir="${target.dir}/docs/reference">
+			<fileset dir="${src}/main/docs/html">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="compilePackageFiles">
+		<mkdir dir="${target.dir}/package/files" />
+		<copy todir="${target.dir}/package/files">
+			<fileset dir=".">
+				<exclude name=".gwt-cache" />
+				<exclude name=".settings" />
+				<exclude name=".*" />
+				<exclude name="local.properties" />
+				<exclude name="${target.dir}" />
+				<include name="src/**" />
+				<include name="build.properties" />
+				<include name="build.xml" />
+				<include name="*.txt" />
+			</fileset>
+
+			<fileset dir="${target.dir}/jar">
+				<include name="*.jar" />
+			</fileset>
+
+			<fileset dir="${target.dir}">
+				<include name="docs/**" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="tar" depends="compilePackageFiles">
+		<tar tarfile="${target.dir}/package/gwt-widgets-server-${SL.version}.tar" basedir="${target.dir}/package/files" />
+	</target>
+
+	<target name="zip" depends="compilePackageFiles">
+		<zip destfile="${target.dir}/package/gwt-widgets-server-${SL.version}.zip">
+			<fileset dir="${target.dir}/package/files">
+				<include name="**/*" />
+			</fileset>
+		</zip>
+	</target>
+
+	<target name="gzip" depends="tar">
+		<gzip zipfile="${target.dir}/package/gwt-widgets-server-${SL.version}.tar.gz" src="${target.dir}/package/gwt-widgets-server-${SL.version}.tar" />
+	</target>
+
+	<target name="bzip2" depends="tar">
+		<bzip2 destfile="${target.dir}/package/gwt-widgets-server-${SL.version}.tar.bz2" src="${target.dir}/package/gwt-widgets-server-${SL.version}.tar" />
+	</target>
+
+	<target name="package" description="Builds the distribution ZIP and GZIP package">
+		<antcall target="war" />
+		<antcall target="javadoc" />
+		<antcall target="copydoc" />
+		<antcall target="clean.classes" />
+		<antcall target="gzip" />
+		<antcall target="zip" />
+	</target>
+	
+	<target name="all" description="Builds everything" depends="package"/>
+
+	<target name="help" description="Display main build targets">
+		<echo>usage:
+ant all			Builds everything (alias of package) 
+ant help        Display this help screen.
+ant -help       Display ant usage screen.
+ant -projecthelp Display all available build targets
+ant package     Build everything (jars, documentation, WAR and package archives) to directory ${target.dir}
+ant war         Build unit test WAR file
+ant test        Execute spring unit tests
+ant clean       Clear directory ${target.dir}
+ant jar         Create jar
+		</echo>
+	</target>
+
+</project>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+	<inherits name="com.google.gwt.user.User" />
+	<inherits name="com.xyz.resources.Resources" />
+	<inherits name="com.xyz.trade.Trade" />
+
+	<source path="client"/>
+	<source path="model"/>
+</module>

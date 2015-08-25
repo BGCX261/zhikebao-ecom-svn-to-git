@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="system">
+    <inherits name="com.google.gwt.user.User"/>
+	<inherits name="org.springframework.security.Security" />
+	<inherits name="com.xyz.resources.Resources" />
+	<entry-point class="com.xyz.system.client.General"/>
+	<source path="model"/>
+	<source path="client"/>
+	
+	<inherits name="com.extjs.gxt.ui.GXT"/>
+</module>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='passport'>
+	<inherits name="com.google.gwt.user.User"/>
+	<inherits name="com.google.gwt.user.theme.standard.Standard"/>
+    <inherits name='com.extjs.gxt.ui.GXT'/>
+    <!-- english language, independent of country -->
+    <extend-property name="locale" values="zh_CN"/>
+	
+	<entry-point class="com.xyz.passport.client.Passport"/>
+</module>

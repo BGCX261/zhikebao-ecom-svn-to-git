@@ -1,0 +1,7 @@
+#footer
+  Powered by #{link_to "Lingosoft.", "http://www.learn2life.com", :popup => true }
+  v#{FatFreeCRM::Version} &copy; 2008-#{Date.today.year} by Lingosoft Team
+  - unless tabless_layout?
+    | #{link_to(t(:about), "#about", :rel => "facebox")}
+%br
+= render :partial => "layouts/about"

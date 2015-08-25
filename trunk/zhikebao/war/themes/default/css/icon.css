@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+.order {
+    background-image:url(../img/head/order.gif) !important;
+}
+
+.user {
+    background-image:url(../img/head/user.gif) !important;
+}
+
+.consignment {
+    background-image:url(../img/head/consignment.gif) !important;
+}
+.address {
+    background-image:url(../img/head/address.gif) !important;
+}

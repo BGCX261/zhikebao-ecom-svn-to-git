@@ -1,0 +1,7 @@
+- action ||= controller.action_name
+- sidebar = "#{controller.controller_name}/sidebar_#{action}"
+- sidebar = "admin/#{sidebar}" if controller.class.to_s.starts_with?("Admin::")
+
+= yield(:sidebar)
+= render(:partial => sidebar) if partial_exist?(sidebar)
+= render :partial => "common/recently"

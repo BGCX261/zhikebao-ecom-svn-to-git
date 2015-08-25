@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:s="http://www.springframework.org/schema/security"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+			http://www.springframework.org/schema/security  http://www.springframework.org/schema/security/spring-security-3.0.xsd"
+      	default-autowire="byType" default-lazy-init="true">                        
+	  <!-- http安全配置 -->
+	<s:http auto-config="true"  access-decision-manager-ref="accessDecisionManager"  >
+	    <s:intercept-url pattern="/**/*.js" filters="none"/>
+	    <s:intercept-url pattern="/**/*.css" filters="none"/>
+	    <s:intercept-url pattern="/**/*.jpg" filters="none"/>
+	    <s:intercept-url pattern="/**/*.gif" filters="none"/>
+	    <s:intercept-url pattern="/zhikebao/authorize" filters="none"/>
+	    <s:intercept-url pattern="/zhikebao/index" filters="none"/>
+	    <s:anonymous enabled="true" granted-authority="R_ANONYMOUS"/>
+	    <s:form-login always-use-default-target="false" authentication-success-handler-ref="loginHandler" 
+	        login-page="/zhikebao/index" default-target-url="/index.html"/>
+		<s:logout logout-success-url="/zhikebao/index" />
+		<s:custom-filter ref="filterSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<s:remember-me key="e37f4b31-0c45-11dd-bd0b-0800200c9a66" />
+	</s:http>
+	<bean id="loginHandler" class="com.xyz.passport.action.LoginHandler"></bean>
+	  <s:authentication-manager alias="authenticationManager">
+		<!-- 认证配置 -->
+	   <s:authentication-provider user-service-ref="userDetailsService">
+				<!-- 可设置hash使用sha1或md5散列密码后再存入数据库 -->
+				<s:password-encoder hash="md5" />
+		</s:authentication-provider>
+     </s:authentication-manager>
+	<!-- 重新定义的FilterSecurityInterceptor,使用securityMetadataSource提供的url-授权关系定义 -->
+	<bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+		<property name="authenticationManager" ref="authenticationManager"/> 
+		<property name="accessDecisionManager" ref="accessDecisionManager" />
+		<property name="securityMetadataSource" ref="databaseDefinitionSource" />
+	</bean>
+	
+	<!-- 授权判断配置, 将授权名称的默认前缀由ROLE_改为A_. -->
+	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+	    <property name="allowIfAllAbstainDecisions" value="true"></property>
+		<property name="decisionVoters">
+			<list>
+				<bean class="org.springframework.security.access.vote.RoleVoter">
+					<property name="rolePrefix" value="A_" />
+				</bean>
+				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</list>
+		</property>
+	</bean>
+	
+   <!-- bean id="preAuthenticatedAuthenticationProvider" class="org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider">
+    <property name="preAuthenticatedUserDetailsService" ref="userDetailsService"/>
+  </bean>
+
+  <bean id="preAuthFilter"  class="com.xyz.system.handler.PreAuthFilter">
+    <property name="authenticationManager" ref="authenticationManager" />
+  </bean> -->
+		
+	<!-- 权限控制部分 -->
+	<bean id="aclCache" class="org.springframework.security.acls.domain.EhCacheBasedAclCache">
+    <constructor-arg>
+      <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+        <property name="cacheManager" ref="cacheManager"></property>
+        <property name="cacheName" value="aclCache"/>
+      </bean>
+    </constructor-arg>
+  </bean>
+  
+  <bean id="aclAuthorizationStrategy" class="org.springframework.security.acls.domain.AclAuthorizationStrategyImpl">
+      <constructor-arg>
+        <list>
+            <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                <constructor-arg value="A_SYS_ADMIN"/>
+            </bean>
+            <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                <constructor-arg value="A_SYS_ADMIN"/>
+            </bean>
+            <bean class="org.springframework.security.core.authority.GrantedAuthorityImpl">
+                <constructor-arg value="A_SYS_ADMIN"/>
+            </bean>
+        </list>
+       </constructor-arg>
+    </bean>    
+     
+    
+  <bean id="auditLogger" class="org.springframework.security.acls.domain.ConsoleAuditLogger"/>
+
+  <bean id="aclService" class="com.xyz.acl.service.impl.MutableAclServiceImpl">
+      <constructor-arg ref="aclCache"/>
+   </bean>
+   
+   	
+	<!-- 定义菜单缓存 -->
+    <bean id="resourceCache" class="org.springmodules.cache.interceptor.proxy.CacheProxyFactoryBean">
+		<property name="cacheProviderFacade" ref="cacheProviderFacade" />
+		<property name="cachingModels">
+			<props>
+				<prop key="getMenuMap">cacheName=menuCache</prop>
+			</props>
+		</property>
+		<property name="flushingModels">
+			<props>
+				<prop key="save">cacheNames=menuCache</prop>
+				<prop key="update">cacheNames=menuCache</prop>
+				<prop key="delete">cacheNames=menuCache</prop>
+				<prop key="batchExecute">cacheNames=menuCache</prop>
+			</props>
+		</property>
+		<property name="proxyInterfaces" value="com.xyz.system.dao.IResourceDao"></property>
+		<property name="target" ref="resourceDao" />
+	</bean>
+   
+	<!-- 定义角色权限缓存 -->
+	 <bean id="authorityCache" class="org.springmodules.cache.interceptor.proxy.CacheProxyFactoryBean">
+		<property name="cacheProviderFacade" ref="cacheProviderFacade" />
+		<property name="cachingModels">
+			<props>
+				<prop key="getAllAuths">cacheName=authCache</prop>
+			</props>
+		</property>
+		<property name="flushingModels">
+			<props>
+				<prop key="save">cacheNames=authCache</prop>
+				<prop key="update">cacheNames=authCache</prop>
+				<prop key="delete">cacheNames=authCache</prop>
+				<prop key="batchExecute">cacheNames=authCache</prop>
+			</props>
+		</property>
+		<property name="proxyInterfaces" value="com.xyz.system.dao.IAuthorityDao"></property>
+		<property name="target" ref="authorityDao" />
+	</bean>
+	<bean id="securityManager" class="com.xyz.system.service.impl.SecurityManager" > 
+	 <property name="rdao" ref="resourceCache"></property>
+	 <property name="adao" ref="authorityCache"></property>
+	</bean>
+	<!-- 系统任务定义 -->
+	<bean id="systemTask" class="com.xyz.system.task.impl.SystemTask"></bean>
+</beans>

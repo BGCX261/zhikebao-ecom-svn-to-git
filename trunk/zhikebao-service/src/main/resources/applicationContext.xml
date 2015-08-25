@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:oxm="http://www.springframework.org/schema/oxm" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+				http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+				http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.0.xsd
+				http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd
+				http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd"
+	default-autowire="byType">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.xyz"></context:component-scan>
+	<!-- 配置Jpa持久化工厂 -->
+	<bean id="entityManagerFactory" 
+		class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean" lazy-init="true">
+        <property name="persistenceUnitName" value="transactions-optional"></property>
+	</bean>
+	<bean name="jpaTxManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	<bean
+        id="org.springframework.context.annotation.internalPersistenceAnnotationProcessor"
+        class="java.lang.String" />
+        
+	<tx:annotation-driven transaction-manager="jpaTxManager" />
+	
+    <bean class="com.xyz.framework.fix.PersistenceAnnotationBeanPostProcessor" primary="true" >
+       <property name="defaultPersistenceUnitName" value="transactions-optional"></property>
+    </bean>
+    <!--bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor">
+        <property name="defaultPersistenceUnitName" value="transactions-optional"></property>
+    </bean> -->
+
+	<!-- 配置JDO持久化工厂  
+	<bean id="persistenceManagerFactory"
+		class="org.springframework.orm.jdo.LocalPersistenceManagerFactoryBean">
+		<property name="jdoPropertyMap">
+			<map>
+				<entry key="javax.jdo.PersistenceManagerFactoryClass"
+					value="org.datanucleus.store.appengine.jdo.DatastoreJDOPersistenceManagerFactory">
+				</entry>
+				<entry key="javax.jdo.option.ConnectionURL" value="appengine"></entry>
+				<entry key="javax.jdo.option.NontransactionalRead" value="true"></entry>
+				<entry key="javax.jdo.option.NontransactionalWrite" value="true"></entry>
+				<entry key="javax.jdo.option.RetainValues" value="true"></entry>
+				<entry key="datanucleus.appengine.autoCreateDatastoreTxns"
+					value="true"></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="jdoTemplate" class="org.springframework.orm.jdo.JdoTemplate">
+		<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+		<property name="allowCreate" value="true"></property>
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.jdo.JdoTransactionManager">
+		<property name="persistenceManagerFactory" ref="persistenceManagerFactory" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager" />
+	 -->
+	<!-- EhCache缓存配置 -->
+	<!-- 缓存实现管理器-->
+	<bean id="cacheManager"
+		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+		<property name="configLocation" value="classpath:ehcache.xml"></property>
+	</bean>
+
+	<!-- 缓存统一接口 -->
+	<bean id="cacheProviderFacade" class="org.springmodules.cache.provider.ehcache.EhCacheFacade">
+		<property name="cacheManager" ref="cacheManager" />
+	</bean>
+
+	<!--
+		task:annotation-driven executor="myExecutor" scheduler="myScheduler"/>
+		<task:executor id="myExecutor" pool-size="5"/> <task:scheduler
+		id="myScheduler" pool-size="10"/>
+	-->
+</beans>

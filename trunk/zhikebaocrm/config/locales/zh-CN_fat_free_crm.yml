@@ -1,0 +1,565 @@
+zh-CN:
+  language: 中文
+
+  # Generic terms.
+  #----------------------------------------------------------------------------
+  all: 全部
+  at: 在
+  here: 这里
+  no_button: 取消
+  not_implemented: 尚未实现.
+  or: 或
+  select_none: '-- 无 --'
+  select_blank: '-- 请选择 --'
+  yes_button: 确定
+
+  # Settings.
+  #----------------------------------------------------------------------------
+  tab_dashboard: 首页
+  tab_tasks: 任务
+  tab_campaigns: 活动
+  tab_leads: 线索
+  tab_accounts: 客户
+  tab_contacts: 联系人
+  tab_opportunities: 销售
+
+  admin_tab_users: 用户
+  admin_tab_settings: 设置
+  admin_tab_plugins: 插件
+
+  planned: 计划中
+  started: 已开始
+  on_hold: 关注中
+  completed: 已完成
+  called_off: 已取消
+
+  new: 新增
+  contacted: 已联系
+  converted: 已转换
+  rejected: 已放弃
+
+  cold_call: 电话访问
+  conference: 会议
+  online: 在线营销
+  referral: 推介
+  self: 自发
+  web: 网站
+  word_of_mouth: 口碑 
+  other: 其他
+
+  prospecting: 跟踪
+  analysis: 分析
+  proposal: 报价
+  negotiation: 协商
+  final_review: 最后协商
+  won: 成功
+  lost: 失败
+
+  call: 电话
+  email: 邮件
+  follow_up: 随访 
+  lunch: 午餐
+  meeting: 会议
+  money: 送礼
+  presentation: 介绍
+  trip: 旅游
+
+  overdue: 过期
+  due_asap: 即刻
+  due_today: 今天
+  due_tomorrow: 明天
+  due_this_week: 本周
+  due_next_week: 下周
+  due_later: 更晚
+
+  completed_today: 今天
+  completed_yesterday: 昨天
+  completed_last_week: 上周
+  completed_this_month: 本月
+  completed_last_month: 上月
+
+  # Models/Activity.
+  #----------------------------------------------------------------------------
+  one_hour: 一个小时
+  one_day: 一天
+  two_days: 两天
+  one_week: 一周
+  two_weeks: 两周
+  one_month: 一个月
+
+  # Model Validations.
+  #----------------------------------------------------------------------------
+  activerecord:
+    errors:
+      models:
+        authentication:
+          attributes:
+            login_field:
+              is_not_valid: 用户名不正确
+            password_field:
+              is_not_valid: 密码不正确
+        account:
+          attributes:
+            name:
+              missing_account_name: "^请输入公司名称."
+            access:
+              share_account: "^请选择可以看到这个公司的用户."
+        campaign:
+          attributes:
+            name:
+              missing_campaign_name: "^请输入名称."
+            ends_on:
+              dates_not_in_sequence: "^开始时间应在结束时间之前."
+            access:
+              share_campaign: "^请选择可以看到这个活动的用户."
+        contact:
+          attributes:
+            first_name:
+              missing_first_name: "^请输入姓."
+            last_name:
+              missing_last_name: "^请输入名字."
+            access:
+              share_contact: "^请选择可以看到这个联系人的用户."
+        lead:
+          attributes:
+            first_name:
+              missing_first_name: "^请输入姓."
+            last_name:
+              missing_last_name: "^请输入名字."
+            access:
+              share_lead: "^请选择可以看到这个线索的用户."
+        opportunity:
+          attributes:
+            name:
+              missing_opportunity_name: "^请输入名称."
+            access:
+              share_opportunity: "^请选择可以看到这次交易的用户."
+        task:
+          attributes:
+            name:
+              missing_task_name: "^请输入任务名称."
+            calendar:
+              invalid_date: "^请选择正确的日期."
+        user:
+          attributes:
+            username:
+              missing_username: "^请输入用户名."
+              username_taken: "^用户名已使用，请换一个."
+            email:
+              missing_email: "^请输入邮件地址."
+              email_in_use: "^邮件地址已使用，请换一个."
+
+  msg_account_suspended: 该用户已经被冻结.
+  password_reset_instruction: 密码重置操作
+
+  # Controllers.
+  #----------------------------------------------------------------------------
+  
+  msg_account_created: 您的帐号已创建，管理员审批后即可使用.
+  msg_account_not_approved: 您的帐号还未生效.
+  msg_asset_deleted: "{{value}} 已经被删除."
+  msg_asset_not_available: "{{value}} 已不存在."
+  msg_assets_not_available: "{{value}} 不可用."
+  msg_asset_rejected:  "{{value}} 已被拒绝."
+  msg_bad_image_file: "^该图片不能上传."
+  msg_cant_create_related: " 不能创建 {{asset}} 因为关联的 {{related}} 不存在."
+  msg_cant_delete_user: "^不能删除用户 {{value}} 因为存在关联数据."
+  msg_cant_do: "不能 {{action}}{{asset}} 因为已不存在."
+  msg_email_not_found: 不存在和这个邮件地址对应的用户.
+  msg_enter_new_password: 请输入新密码.
+  msg_goodbye: 您已退出. 谢谢使用知客宝!
+  msg_invalid_password: "^请输入正确的密码"
+  msg_invalig_login: 用户名或密码错误.
+  msg_last_login: 您最近一次登录时间是 {{value}}.
+  msg_login_needed: 您必须登录后才能访问该页面.
+  msg_logout_needed: 您必须退出后才能访问本页面.
+  msg_password_changed: 您的密码已经修改.
+  msg_password_not_changed: 您的密码还没有修改.
+  msg_password_updated: 密码更新成功.
+  msg_pwd_instructions_sent: 密码重置操作已接受，请查收邮箱.
+  msg_require_admin: 本页面只有管理员能访问.
+  msg_successful_signup: 注册成功，欢迎使用知客宝!
+  msg_welcome: 欢迎使用知客宝!
+
+  # Options.
+  #----------------------------------------------------------------------------
+  "option_amount*probability": 加权数值
+  activity_options: 在 过去{{period}} 用户{{user}}创建了 {{models}} .
+  option_after: 之后
+  option_all: 全部
+  option_all_users: 所有用户
+  option_amount: 金额
+  option_before: 之前
+  option_brief: 过去
+  option_closes_on: 关闭时间
+  option_company: 公司
+  option_created_at: 创建于
+  option_ends_on: 结束时间
+  option_first_name: 姓
+  option_last_name: 名
+  option_leads_count: 源线索
+  option_long: 完整
+  option_name: 名称
+  option_probability: 可能性
+  option_rating: 级别
+  option_revenue: 实际收入
+  option_starts_on: 开始时间
+  option_target_leads: 目标线索
+  option_target_revenue: 预计收入
+  option_updated_at: 更新时间
+  show_per_page: Show {{number}} {{models}} per page using {{format}} format. 
+  sort_by: 按 {{field}} 显示  {{models}} .
+  sort_by_displaying: Sort {{models}} by {{field}} displaying first name {{position}} last name. 
+
+  # Views -> Profile.
+  #----------------------------------------------------------------------------
+  aim: AOL IM
+  already_signed_up: 已注册?
+  alt_email: 邮件
+  change_password: 修改密码
+  company: 公司
+  contact_info: 联系人信息
+  current_password: 当前密码
+  edit_profile: 编辑属性
+  email: 邮件
+  first_name: 姓名
+  google: GTalk
+  gravatar_help: 不知道什么是大头贴? 来了解一下吧
+  image_file: 图片文件
+  image_help: 图片将被截取成 75 x 75 像素大小. 支持的格式有 GIF, JPG, and PNG.
+  job_title: 职位
+  last_name: 名字
+  login_now_link: 现在登录!
+  mobile: 手机
+  my_profile: 个人设置
+  new_password: 新密码
+  password: 密码
+  password_confirmation: 确认密码
+  phone: 电话
+  profile: 个人设置
+  profile_language: 语言
+  save_profile: 保存设置
+  sign_up: 注册
+  sign_up_button: 注册
+  skype: Skype
+  upload_picture: 上传图片
+  use_gravatar: 使用大头贴
+  user: 用户
+  username: 用户名
+  yahoo: QQ
+
+  # Views -> Authenticate.
+  #----------------------------------------------------------------------------
+  forgot_password: 忘记密码?
+  login: 登录
+  no_account: 没有帐号?
+  remember_me: 记住我
+  sign_up_now: 现在注册!
+
+  # Views -> Accounts.
+  #----------------------------------------------------------------------------
+  account: 客户
+  account_permissions_intro: 默认情况下只有您自己可以看到这个客户,可以在下边设置其他人查看本交易.
+  account_small: 客户
+  accounts: 客户
+  accounts_options: 客户设置
+  accounts_small: 客户
+  assigned_to: 分配给
+  billing_address: 收款地址
+  create_account: 新建客户
+  date_created: 创建时间
+  date_updated: 更新时间
+  fax: 传真
+  intro: "{{value}} 可以随后添加."
+  mobile_small: 手机
+  open_in_window: 在新窗口打开 {{value}} 
+  phone_small: 电话
+  phone_toll_free: 客服电话
+  keep_private: 只有我可以看到
+  make_public: 所有人都可以看到
+  same_as_billing: 和收款地址一样
+  save_account: 保存客户
+  share_with: 以下用户可以看到
+  shipping_address: 收货地址
+  website: 网址
+
+  # Views -> Campaigns.
+  #----------------------------------------------------------------------------
+  actual: 需求
+  actual_performance: 实际效果
+  budget: 预算
+  budget_label: 预算 (￥)
+  campaign: 活动
+  campaign_and_leads: 活动和线索
+  campaign_small: 活动
+  campaign_summary: 活动总结
+  campaign_targets: 活动目标
+  campaigns: 活动
+  campaigns_options: 活动设置
+  campaigns_small: 活动
+  conversion: 转化
+  conversion_label: 转化率 (%)
+  conversion_number: "转化{{value}} 个" 
+  create_campaign: 创建活动
+  end_date: 结束时间
+  finished_on: 在 {{value}}结束
+  finishes_in: 在 {{value}}完成
+  no_start_date: 请指定开始时间
+  number_of_leads: 线索编号
+  objectives: 目标
+  objectives_help: Please specify target number of leads, expected leads-to-opportunities conversion ratio, target revenue, and campaign budget. These numbers will let you track actual campaign performance.
+  objectives_small: 活动目标
+  revenue: 收入
+  revenue_label: 收入 (￥)
+  revenue_number: "收入：{{value}} "
+  save_campaign: 保存活动
+  start_date: 开始时间
+  started_ago: 在 {{value}} 之前开始
+  starts_in:  在 {{value}}开始
+  starts_today: 今天开始!
+  target: 目标
+  total_campaigns: 活动总数
+  was_supposed_to_finish: 需要在 {{value}}完成
+  was_supposed_to_start: 需要在 {{start_date}} {{time_ago}} 之前开始
+    
+  # Views -> Contacts.
+  #----------------------------------------------------------------------------
+  address: 地址
+  alt_email_small: 其他
+  blog: 网址/博客
+  contact: 联系人
+  contact_small: 联系人
+  contacts: 联系人
+  contacts_options: 联系人设置
+  contacts_small: 联系人
+  create_contact: 创建联系人
+  department: 部门
+  department_small: '{{value}} 部门'
+  do_not_call: 不接受电话
+  extra_info: 补充信息
+  extra_info_small: 附加联系人
+  facebook: 阿里巴巴帐号
+  linked_in: QQ
+  myself: 我自己
+  permissions_intro: 默认情况下只有您自己可以看到这个 {{value}}, 可以在下边设定让其他人也能看到.
+  referred_by: 推荐人
+  referred_by_small: 推荐人
+  save_contact: 保存联系人
+  twitter: 阿里旺旺号
+  web_presence: 公司主页
+  web_presence_small: 公司主页
+  works_at: " {{company}} 公司 {{job_title}} "
+
+  # Views -> Leads.
+  #----------------------------------------------------------------------------
+  convert: 转化
+  convert_lead: 转化线索
+  convert_lead_permissions_intro: Contact permissions will be copied from the lead being converted. You can change contact permissions later.
+  convert_lead_text: By converting the lead {{value}} will become a contact associated with the existing or newly created account. Lead status will be automatically set to converted.
+  create_lead: 创建线索
+  create_opp_for_contact: You can optionally create an opportunity for the {{value}} contact by specifying the name, current stage, estimated closing date, sale probability, amount of the deal, and the discount offered.
+  lead: 线索
+  lead_info_small: 联系人
+  lead_permissions_intro: By default permissions will be copied from the campaign or set to private. You can change lead permissions later.
+  lead_small: 线索
+  lead_status_small: 状态
+  lead_summary: 概述
+  leads: 线索
+  leads_options: 设置
+  leads_small: 线索
+  none: 无
+  rating: 优先级
+  reject: 放弃
+  reject_lead_confirm: 打算放弃这个线索吗?
+  save_lead: 保存线索
+  source: 源
+  status: 状态
+  total_leads: 线索总数
+
+  # Views -> Opportunities.
+  #----------------------------------------------------------------------------
+  amount: 金额
+  close_date: 关闭时间
+  closed_ago_on: 在 {{date}} {{time_ago}} 前关闭
+  closes_today: 计划今天结束!
+  closing_date: 在 {{value}} 结束
+  create_opportunity: 创建交易
+  currency: (￥)
+  days_late: 晚于
+  days_left: 剩余天数：
+  discount: 结余
+  discount_number: 还有 {{value}} 结余
+  expected_to_close: 计划在 {{date}} {{time}} 结束
+  from: 从
+  no_closing_date: 没有在预定时间完成
+  no_discount: 没有结余
+  opportunities: 交易
+  opportunities_options: 设置
+  opportunities_small: 交易
+  opportunity: 交易
+  opportunity_small: 交易
+  opportunity_summary: 交易概览
+  opportunity_summary_text: "{{amount}} with {{discount}} discount and {{probability}} probability" 
+  past_due: 已过期, 预期在 {{value}} 之前结束
+  probability: 可能新
+  probability_number: 和 {{value}} 
+  save_opportunity: 保存交易
+  stage: 计划
+  total_opportunities: 交易总数
+  weighted_amount: 总金额
+
+  # Views -> Tasks.
+  #----------------------------------------------------------------------------
+  assign_to: 分配给
+  assigned_tab: 已分配
+  assigned_tasks: 分配的任务
+  category: 类别
+  completed_tab: 已完成
+  completed_tasks: 已完成的任务
+  create_task: 创建任务
+  create_task_small: 创建新任务
+  due: 处理
+  feel_free: 随意
+  move_to: 安排到
+  no_tasks: "没有 {{value}} 任务"
+  pending_tab: 进行中
+  pending_tasks: 进行中的任务
+  related: 're:'
+  save_task: 保存任务
+  task_assigned: 该任务分配给 {{value}}
+  task_assigned_to: 和分配给 {{value}}
+  task_completed: 已完成
+  task_completed_ago: 在 {{value}} 之前完成
+  task_completed_by: 用户 {{user}} 在 {{time_ago}} 完成
+  task_created: 任务创建成功
+  task_due_in: 在 {{value}} 前处理
+  task_due_later: 随后处理
+  task_due_now: 现在处理
+  task_due_today: 今天处理
+  task_from: 从 {{value}}
+  task_overdue: 前到期
+  task_pending: 任务转移到处理中
+  task_small: 任务
+  tasks: 任务
+  total_tasks: 总数： {{value}}
+  view_assigned_tasks: 查看分配出去的任务
+  view_pending_tasks: 查看正在处理的任务
+
+  # Views -> Home.
+  #----------------------------------------------------------------------------
+  action_commented: 留言：
+  action_completed: 已完成
+  action_created: 已创建
+  action_deleted: 已删除
+  action_reassigned: 重新分配
+  action_rejected: 已放弃
+  action_rescheduled: 重新设置
+  action_updated: 已更新
+  action_viewed: 已查看
+  no_activity_records: 没有操作记录.
+  recent_activity: 最新操作
+  recent_activity_options: 最近操作设置
+  subject_account: 客户
+  subject_campaign: 活动
+  subject_contact: 联系人
+  subject_lead: 线索
+  subject_opportunity: 交易
+  subject_task: 任务
+
+  # Views -> Common.
+  #----------------------------------------------------------------------------
+  add_note: 添加日志
+  add_note_help: 添加一个新日志...
+  added_ago: 在 {{value}} 之前创建
+  added_by: 用户 {{user}} 在{{time_ago}}之前创建
+  back: 后退
+  cancel: 取消
+  close_form: 关闭
+  confirm_delete: 您确定要删除 {{value}}?
+  copy_permissions: 复制 {{value}} 的权限
+  could_not_find: "不能找到 {{value}}. 随意"
+  could_not_find_matching: "不能找到和 {{value}} 匹配"
+  create_new: 创建新
+  delete: 删除
+  edit: 编辑
+  items_total: '总数：{{count}} .'
+  me: 我
+  n_a: N/A
+  name: 名称
+  no_match: 和 {{value}} 不一致
+  no_recent_items: 最近没有进行操作.
+  options: 设置
+  permissions: 权限
+  please_retry: 请重新查找.
+  recent_items: 最近事项
+  search_assets: 查询 {{value}}
+  time_ago: "{{value}} 之前"
+
+  # Views -> Layout.
+  #----------------------------------------------------------------------------
+  about: 关于
+  about_dev_group: 开发者讨论组
+  about_features: 特征和问题
+  about_ffc_resources: 知客宝资源
+  about_ffc_version: 知客宝1.0
+  about_home_page: 主页
+  about_project_page: 项目
+  about_thank_you: 谢谢使用知客宝! 非常感谢贵公司，希望您喜欢知客宝软件.
+  about_twitter: Twitter提交
+  about_user_group: 用户讨论组
+  admin: 管理
+  logout: 退出
+  quick_find: 快速查找
+  welcome: 欢迎
+
+  # Views -> Comments.
+  #----------------------------------------------------------------------------
+  edit_comment: 编辑留言
+  show: 显示
+  update: 更新
+
+  # Views -> Passwords.
+  #----------------------------------------------------------------------------
+  confirm_password_intro: 请输入新的密码，点击确认.
+  password_intro: 请输入邮件地址, 重置密码操作将发送到这个邮箱.
+  reset_password: 重置密码
+  update_password_and_login: 更新用户名和密码
+
+  # Views -> Admin -> Users.
+  #----------------------------------------------------------------------------
+  approve: 审核
+  create_user: 创建用户
+  last_seen: 最后一次登录在 {{value}} 之前
+  personal_information: 个人信息
+  reactivate: 重新激活
+  save_user: 保存用户
+  suspend: 冻结
+  user_active: 激活
+  user_admin: 管理
+  user_awaits_approval: 等待审核
+  user_confirm_delete: 用户只有在与其关联的数据都被删除后才能注销.
+  user_is_admin: 用户是管理员
+  user_never_logged_in: "还没有登录"
+  user_signed_up: 注册
+  user_signed_up_on: 在 {{value}}注册
+  user_since: 用户从 {{value}}开始起用
+  user_suspended: 冻结
+  user_suspended_on: 在 {{value}} 冻结
+  users: 用户
+
+  pluralize:
+    contact: 
+      one: '1个联系人'
+      other: '{{count}}个联系人'
+    opportunity:
+      one: '1个交易'
+      other: '{{count}}个交易'
+    lead:
+      one: '1个线索'
+      other: '{{count}}个线索'
+    day:
+      one: '1 天'
+      other: '{{count}} 天'
+    login:
+      one: '登录1次 '
+      other: '登录{{count}}次'

@@ -1,0 +1,11 @@
+<!-- Indices written at Sat, 21 Nov 2009 18:31:11 CST -->
+
+<datastore-indexes>
+
+    <!-- Used 1 time in query history -->
+    <datastore-index kind="Resource" ancestor="false" source="auto">
+        <property name="resourceType" direction="asc"/>
+        <property name="position" direction="asc"/>
+    </datastore-index>
+
+</datastore-indexes>

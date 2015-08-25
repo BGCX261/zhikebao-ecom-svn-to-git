@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+
+    <persistence-unit name="transactions-optional"  transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jar-file>taobao-base-1.0.jar</jar-file>
+        <!-- 知客宝系统 -->
+        <class>com.xyz.system.model.Authority</class>
+        <class>com.xyz.system.model.Resource</class>
+        <class>com.xyz.system.model.User</class>
+        <class>com.xyz.system.model.Shop</class>
+        <class>com.xyz.system.model.Department</class>
+        <class>com.xyz.resources.model.BaseCode</class>
+        <class>com.xyz.resources.model.Area</class>
+          <!-- 客户 -->
+        <class>com.xyz.customer.model.Customer</class>
+        <!-- 交易 -->
+        <class>com.xyz.trade.model.OrderModel</class>
+        <class>com.xyz.trade.model.TradeModel</class>
+        <!-- 商品 -->
+        <class>com.xyz.product.model.Item</class>
+        <class>com.xyz.product.model.ItemImg</class>
+        <class>com.xyz.product.model.PropImg</class>
+        <class>com.xyz.product.model.Sku</class>
+        <class>com.xyz.product.model.Video</class>
+        <!-- 库房 -->
+        <class>com.xyz.trade.model.ShipAddress</class>
+        <class>com.xyz.trade.model.LogisticCompany</class>
+        <class>com.xyz.resources.model.Location</class>
+        <!-- 淘宝系统 -->
+        <!-- mapping-file>com/taobao/api/extra/TaobaoModel.orm.xml</mapping-file> -->
+        <class>com.taobao.api.model.User</class>
+        <class>com.taobao.api.model.UserCredit</class>
+        <class>com.taobao.api.model.Shop</class>
+        <class>com.taobao.api.model.Refund</class>
+        <class>com.taobao.api.model.RefundRemindTimeOut</class>
+        <!-- 权限控制部分 -->
+        <class>com.xyz.acl.model.AclClass</class>
+        <class>com.xyz.acl.model.AclEntry</class>
+        <class>com.xyz.acl.model.AclObjectIdentity</class>
+        <class>com.xyz.acl.model.AclSid</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+   <properties>
+      <property name="hibernate.archive.autodetection" value="class, hbm"/>
+	  <property name="hibernate.connection.provider_class"
+                value="org.hibernate.connection.C3P0ConnectionProvider"/>
+	  <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+	  <property name="hibernate.connection.url" value="jdbc:mysql://localhost/zhikebao?useUnicode=true&amp;characterEncoding=utf-8"/>
+	  <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
+	  <property name="hibernate.connection.password" value="root"/>
+	  <property name="hibernate.connection.username" value="root"/>
+	  <property name="hibernate.hbm2ddl.auto" value="update"/>
+	  <property name="hibernate.show_sql" value="false"/>
+	  <property name="hibernate.c3p0.min_size" value="5"/>
+	  <property name="hibernate.c3p0.max_size" value="20"/>
+	  <property name="hibernate.c3p0.timeout" value="300"/>
+	  <property name="hibernate.c3p0.max_statements" value="50"/>
+	  <property name="hibernate.c3p0.idle_test_period" value="3000"/>
+   </properties>
+</persistence-unit>
+
+</persistence>

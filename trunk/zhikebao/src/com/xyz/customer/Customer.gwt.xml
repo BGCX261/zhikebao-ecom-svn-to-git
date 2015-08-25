@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="customer">
+	<inherits name="com.google.gwt.user.User"/>
+	<inherits name="com.google.gwt.user.theme.standard.Standard"/>
+    <inherits name="com.xyz.resources.Resources" />
+	<entry-point class="com.xyz.customer.client.Customer"/>
+	<inherits name="com.extjs.gxt.ui.GXT"/>
+	<source path="client"></source>
+	<source path="model"></source>
+</module>

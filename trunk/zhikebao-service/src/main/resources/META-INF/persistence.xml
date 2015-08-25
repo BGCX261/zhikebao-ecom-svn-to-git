@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+        http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd" version="1.0">
+
+    <persistence-unit name="transactions-optional">
+        <provider>org.datanucleus.store.appengine.jpa.DatastorePersistenceProvider</provider>
+        <jar-file>taobao-base-1.0.jar</jar-file>
+        <!-- 知客宝系统 -->
+        <class>com.xyz.system.model.Authority</class>
+        <class>com.xyz.system.model.Resource</class>
+        <class>com.xyz.system.model.User</class>
+        <class>com.xyz.system.model.Shop</class>
+        <class>com.xyz.system.model.Department</class>
+        <class>com.xyz.base.model.BaseCode</class>
+          <!-- 客户 -->
+        <class>com.xyz.customer.model.Customer</class>
+        <!-- 淘宝系统 -->
+        <class>com.taobao.api.model.Item</class>
+        <class>com.taobao.api.model.Order</class>
+        <class>com.taobao.api.model.Trade</class>
+        <class>com.taobao.api.model.ItemImg</class>
+        <class>com.taobao.api.model.PropImg</class>
+        <class>com.taobao.api.model.Sku</class>
+        <class>com.taobao.api.model.Video</class>
+        <class>com.taobao.api.model.User</class>
+        <class>com.taobao.api.model.Location</class>
+        <class>com.taobao.api.model.UserCredit</class>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="datanucleus.NontransactionalRead" value="true"/>
+            <property name="datanucleus.NontransactionalWrite" value="true"/>
+            <property name="datanucleus.ConnectionURL" value="appengine"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

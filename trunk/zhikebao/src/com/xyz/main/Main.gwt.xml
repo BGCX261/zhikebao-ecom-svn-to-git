@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='zkb'>
+  <!-- Inherit the default GWT style sheet.  You can change       -->
+  <!-- the theme of your GWT application by uncommenting          -->
+  <!-- any one of the following lines.                            -->
+  <inherits name="com.google.gwt.user.User" />
+  <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
+  <!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/>     -->
+  <inherits name="net.sf.gilead.Adapter4Gwt15"/>
+  <inherits name="com.xyz.trade.Trade"/>
+  <inherits name="com.xyz.stock.Stock"/>
+  <inherits name="com.xyz.system.General"/>
+  <inherits name="com.xyz.customer.Customer"/>
+  <inherits name="com.xyz.resources.Resources"/>
+  <source path="client"></source>
+  <source path="model"></source>
+  <inherits name="com.google.gwt.maps.GoogleMaps" />
+  <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAlLrZRKZSwr2Anb1yGLM7KBT2EYYVvuzbyE44ck3aa-m8UoTXlBRzOJbWgNLFZaiEGx-C4362JoTD6w"></script>
+  
+  <!-- Specify the app entry point class.                         -->
+  <entry-point class='com.xyz.main.client.Main'/>
+</module>

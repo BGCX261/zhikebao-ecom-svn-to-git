@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to="stock">
+	<inherits name="com.google.gwt.user.User" />
+	<inherits name="com.xyz.resources.Resources" />
+	<inherits name="com.xyz.system.General"/>
+	<inherits name="com.xyz.product.Product"/>
+	<inherits name="com.google.gwt.i18n.I18N"/> 
+    <extend-property name="locale" values="zh" />
+	<entry-point class="com.xyz.stock.client.Stock" />	
+</module>

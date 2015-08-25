@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='resource'>
+  <inherits name='com.extjs.gxt.ui.GXT'/>
+  <inherits name="com.google.gwt.user.User" />
+  <inherits name="net.sf.gilead.Adapter4Gwt15"/>
+  <inherits name="com.xyz.system.General"/>
+  <source path="client"></source>
+  <source path="model"></source>
+
+</module>
